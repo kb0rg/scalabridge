@@ -68,7 +68,7 @@ the screen, not because we have a use for the value it returns.
     circle(30) fillColor Color.white on circle(40) 
     fillColor Color.darkSeaGreen).draw
 
-// creating colors
+// creating & manipulating colors
 
 /*
 Computers work with colors defined by mixing together different amounts of red, 
@@ -120,9 +120,80 @@ This method takes as parameters the hue, saturation, and lightness. The hue is
 an Angle. We can convert a Double to an Angle using the degrees (or radians) 
 methods.
 
+
+Saturation and lightness are both normalized to between 0.0 and 1.0. We can 
+convert a Double to a normalized value with the .normalized method.
 */
 
-Color.hsl(0.degrees, 0.8.normalized, 0.6.normalized) // A pastel red
+(circle(50) fillColor Color.hsl(0.degrees, 0.8.normalized, 0.6.normalized)).draw
+// A pastel red
+
+/*
+The effectiveness of a composition often depends as much on the relationships 
+between colors as the actual colors used. Colors have several methods that allow 
+us to create a new color from an existing one. The most commonly used ones are:
+- spin, which rotates the hue by an Angle;
+- saturate and desaturate, which respectively add and subtract a Normalised 
+value from the color; and
+- lighten and darken, which respecitvely add and subtract a Normalised value 
+from the lightness.
+
+**/
+
+((circle(100) fillColor Color.red) beside 
+  (circle(100) fillColor Color.red.spin(15.degrees)) beside
+    (circle(100) fillColor Color.red.spin(30.degrees))).lineWidth(5.0).draw
+// Three circles, starting with Color.red and spinning by 15 degrees for each 
+// successive circle
 
 
+(((circle(20) fillColor (Color.red darken 0.2.normalized))
+  beside (circle(20) fillColor Color.red)
+  beside (circle(20) fillColor (Color.red lighten 0.2.normalized))) above
+((rectangle(40,40) fillColor (Color.red desaturate 0.6.normalized)) 
+  beside (rectangle(40,40) fillColor (Color.red desaturate 0.3.normalized))
+  beside (rectangle(40,40) fillColor Color.red))).draw
+// The top three circles show the effect of changing lightness, and the bottom 
+// three squares show the effect of changing saturation.
 
+/*
+The methods Color.rgba and Color.hsla have a fourth parameter that is a 
+Normalized alpha value.
+**/
+
+((circle(40) fillColor (Color.red.alpha(0.5.normalized))) beside
+ (circle(40) fillColor (Color.blue.alpha(0.5.normalized))) on
+ (circle(40) fillColor (Color.green.alpha(0.5.normalized)))).draw
+
+// Circles with alpha of 0.5 showing transparency
+
+
+// Exercises:
+
+// Create three triangles, arranged in a triangle, with complementary colors. 
+// Complementary colors are colors that are similar in hue.
+
+// ?? that's not what "complementary" means in color theory. /shrug
+
+(triangle(60.0, 60.0) fillColor Color.darkSlateBlue beside 
+    triangle(60.0, 60.0) fillColor Color.darkSlateBlue.spin(15.degrees) below 
+    triangle(60.0, 60.0) fillColor Color.darkSlateBlue.spin(-15.0.degrees)).draw
+
+// below is solution code that fine-tunes other attributes not specified in 
+// excercise
+
+((triangle(40, 40)
+       lineWidth 6.0
+       lineColor Color.darkSlateBlue
+       fillColor (Color.darkSlateBlue lighten 0.3.normalized saturate 
+        0.2.normalized spin 10.degrees)) above
+  ((triangle(40, 40)
+      lineWidth 6.0
+      lineColor (Color.darkSlateBlue spin (-30.degrees))
+      fillColor (Color.darkSlateBlue lighten 0.3.normalized saturate 
+        0.2.normalized spin (-20.degrees))) beside
+     (triangle(40, 40)
+        lineWidth 6.0
+        lineColor (Color.darkSlateBlue spin (30.degrees))
+        fillColor (Color.darkSlateBlue lighten 0.3.normalized saturate 
+            0.2.normalized spin (40.degrees))))).draw
