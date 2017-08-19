@@ -114,3 +114,54 @@ leads to a circular dependency that can’t be resolved.
 
 **/
 
+
+/*
+4.4 Abstraction
+names abstract over expressions
+
+a name stands in a for an expression. An expression tells us how to construct a 
+value. If that value has a name then we don’t need to know anything about how 
+the value is constructed. The expression can have arbtirary complexity, but we 
+don’t have to care about this complexity if we just use the name.
+
+Whenever we have an expression we can substitute a name that refers to the 
+same value.
+
+val box =
+  Image.rectangle(40, 40).
+    lineWidth(5.0).
+    lineColor(Color.royalBlue.spin(30.degrees)).
+    fillColor(Color.royalBlue) 
+
+box beside box beside box beside box beside box
+
+
+Exercise: Streets Ahead
+use abstraction to create a street scene
+(repeating pattern of houses and trees over a street w/ patterned curb)
+**/
+
+val pavement =
+    Image.rectangle(60, 5).lineWidth(0).fillColor(Color.yellow) beside 
+    Image.rectangle(20, 5).lineWidth(0).fillColor(Color.black) above 
+    Image.rectangle(80, 10).lineWidth(0).fillColor(Color.black)
+
+
+val tree = 
+    Image.circle(40).lineWidth(0).fillColor(Color.green) above
+    Image.rectangle(10, 30).lineColor(Color.brown).fillColor(Color.brown)
+
+val house =
+    Image.triangle(60, 60).lineWidth(0).fillColor(Color.fireBrick) above
+    (Image.rectangle(50, 20).lineWidth(0).fillColor(Color.red) above
+        (Image.rectangle(20, 40).lineWidth(0).fillColor(Color.red) beside
+            Image.rectangle(10, 40).lineWidth(0).fillColor(Color.black) beside
+            Image.rectangle(20, 40).lineWidth(0).fillColor(Color.red)))
+
+val block =
+    (house beside tree) above
+    (pavement beside pavement beside pavement)
+
+val street = 
+    block beside block beside block
+
