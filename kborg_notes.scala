@@ -197,3 +197,42 @@ Normalized alpha value.
         lineColor (Color.darkSlateBlue spin (30.degrees))
         fillColor (Color.darkSlateBlue lighten 0.3.normalized saturate 
             0.2.normalized spin (40.degrees))))).draw
+
+// Exercise 3.5.1 Compilation Target
+
+(circle(10) fillColor Color.red on circle(20) fillColor Color.white 
+    on circle(30) fillColor Color.red).draw
+
+// For bonus credit add a stand so we can place the target on a range
+((circle(10) fillColor Color.red on circle(20) fillColor Color.white 
+    on circle(30) fillColor Color.red) above 
+    (rectangle(10, 20) fillColor Color.saddleBrown above 
+        rectangle(20, 10) fillColor Color.saddleBrown)).draw
+
+// Colour your target red and white, the stand in brown (if applicable), and some 
+// ground in green.
+((circle(10) fillColor Color.red on circle(20) fillColor Color.white 
+    on circle(30) fillColor Color.red) above 
+    (rectangle(10, 20) fillColor Color.saddleBrown above 
+        rectangle(20, 10) fillColor Color.saddleBrown) above 
+    rectangle(50, 30) fillColor Color.green).draw
+
+// solution, with grouped parameters like line width:
+(
+  ( circle(10) fillColor Color.red ) on
+  ( circle(20) fillColor Color.white ) on
+  ( circle(30) fillColor Color.red lineWidth 2 ) above
+  ( rectangle(6, 20) above rectangle(20, 6) fillColor Color.brown ) above
+  ( rectangle(80, 25) lineWidth 0 fillColor Color.green )
+).draw
+
+
+
+// 4 Writing Larger Programs
+/*
+Your text editor or IDE will allow you to save code to a file, but we need to 
+save them in the right place so the Scala compiler can find them.
+
+for next exercises, see:
+./creative-scala-template-master/src/main/scala/Example.scala
+**/
