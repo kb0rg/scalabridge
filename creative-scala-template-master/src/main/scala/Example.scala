@@ -148,15 +148,15 @@ val pavement =
 
 
 val tree = 
-    Image.circle(40).lineWidth(0).fillColor(Color.green) above
-    Image.rectangle(10, 30).lineColor(Color.brown).fillColor(Color.brown)
+    Image.circle(35).lineWidth(0).fillColor(Color.green) above
+    Image.rectangle(15, 30).lineColor(Color.brown).fillColor(Color.brown)
 
 val house =
-    Image.triangle(60, 60).lineWidth(0).fillColor(Color.fireBrick) above
-    (Image.rectangle(50, 20).lineWidth(0).fillColor(Color.red) above
-        (Image.rectangle(20, 40).lineWidth(0).fillColor(Color.red) beside
-            Image.rectangle(10, 40).lineWidth(0).fillColor(Color.black) beside
-            Image.rectangle(20, 40).lineWidth(0).fillColor(Color.red)))
+    Image.triangle(80, 40).lineWidth(0).fillColor(Color.fireBrick) above
+    (Image.rectangle(80, 20).lineWidth(0).fillColor(Color.red) above
+        (Image.rectangle(30, 40).lineWidth(0).fillColor(Color.red) beside
+            Image.rectangle(20, 40).lineWidth(0).fillColor(Color.black) beside
+            Image.rectangle(30, 40).lineWidth(0).fillColor(Color.red)))
 
 val block =
     (house beside tree) above
